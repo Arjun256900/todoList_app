@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo app</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Signika:wght@400;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>Your TODO List</h1>
+    </header>
+    <form action="/addTask" method="POST">
+      <input type="text" name="task" placeholder="Task" class="input" />
+      <button type="submit" class="add-task">Add task</button>
+    </form>
+    <div class="flex-container">
+      <ul class="list">
+        <%if(locals.tasks.length == 0){ %>
+        <div class="container">
+          <h2>Hmm, seems like you have no tasks pending!</h2>
+        </div>
+        <%} else{ %>
+        <div class="container">
+          <% tasks.forEach((task, index) => {%>
+          <li class="todo-item">
+            <div class="task"><%=index+1 %>. <%= task%></div>
+            <div class="buttons">
+              <!-- <i class="fas fa-check"></i> -->
+              <a href="/deleteTask? index=<%= index %>">Delete</a>
+            </div>
+          </li>
+          <% }); }%>
+        </div>
+      </ul>
+    </div>
+    <script src="../index.js"></script>
+  </body>
+</html>
